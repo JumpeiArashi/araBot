@@ -6,10 +6,10 @@ module.exports = class AppleSpecialDeal
   constructor: (
     @url = 'http://www.apple.com/jp/shop/browse/home/specialdeals/'
   ) ->
+    @macAccessoriesPrefix = 'mac/mac_accessories'
 
   getMacAccessoriesCount: (callback) =>
-    prefix = 'mac/mac_accessories'
-    url = "#{@url}#{prefix}"
+    url = "#{@url}#{@macAccessoriesPrefix}"
     macAccessoriesCount = undefined
 
     nightmare = new Nightmare(
