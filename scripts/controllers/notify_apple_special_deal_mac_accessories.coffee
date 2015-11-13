@@ -22,7 +22,8 @@ module.exports = class NotifyAppleSpecialDealMacAccessories
           params =
             channel: "@#{process.env.HUBOT_SLACK_MASTER}"
             content: """
-              [整備済み Time Capsule](#{@apple.url}#{@apple.macAccessoriesPrefix}) ｷﾃﾙﾖ
+              <@#{process.env.HUBOT_SLACK_MASTER}>
+              <#{@apple.url}#{@apple.macAccessoriesPrefix}|整備済み Time Capsule> ｷﾃﾙﾖ
             """
           @incomingWebhook.notify params, callback
 
