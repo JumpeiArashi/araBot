@@ -20,6 +20,7 @@ module.exports = class NotifyAppleSpecialDealMacAccessories
       (macAccessoriesCount, callback) =>
         if macAccessoriesCount > 2
           params =
+            channel: "@#{process.env.HUBOT_SLACK_MASTER}"
             content: """
               [整備済み Time Capsule](#{@apple.url}#{@apple.macAccessoriesPrefix}) ｷﾃﾙﾖ
             """

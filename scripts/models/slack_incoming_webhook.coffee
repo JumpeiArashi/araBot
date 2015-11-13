@@ -1,6 +1,6 @@
 Request = require 'request'
 
-module.exports = class IncomingWebhook
+module.exports = class SlackIncomingWebhook
 
   constructor: ({
     @url
