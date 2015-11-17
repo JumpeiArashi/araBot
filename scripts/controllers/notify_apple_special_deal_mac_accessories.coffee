@@ -18,22 +18,27 @@ module.exports = class NotifyAppleSpecialDealMacAccessories
         @apple.getMacAccessoriesCount callback
 
       (macAccessoriesCount, callback) =>
-        if macAccessoriesCount > 2
-          params =
-            channel: "@#{process.env.HUBOT_SLACK_MASTER}"
-            content: """
-              <@#{process.env.HUBOT_SLACK_MASTER}>
-              <#{@apple.url}#{@apple.macAccessoriesPrefix}|整備済み Time Capsule> ｷﾃﾙﾖ
-            """
-          @incomingWebhook.notify params, callback
+        switch macAccessoriesCount
+          when 1
+            params =
+              content: 'ｱｲﾃﾑの構造がｶﾜｯﾀ(ｶﾓｼﾚﾅｲ) :eyes:'
+              color: 'danger'
 
-        # this notify will be removed for days
-        else
-          params =
-            content: "まだだよ"
-            color: 'danger'
+          when 2
+            params =
+              content: "ﾏﾀﾞﾀﾞﾖ"
+              color: 'warning'
 
-          @incomingWebhook.notify params, callback
+          else
+            params =
+              channel: "@#{process.env.HUBOT_SLACK_MASTER}"
+              content: """
+                <@#{process.env.HUBOT_SLACK_MASTER}>
+                <#{@apple.url}#{@apple.macAccessoriesPrefix}|整備済み Time Capsule> ｷﾃﾙﾖ :+1:
+              """
+
+        @incomingWebhook.notify params, callback
+
     ], (err, result) ->
       if err
         params =
